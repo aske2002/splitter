@@ -71,10 +71,15 @@ class WelcomeScreen extends StatelessWidget {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      showModalBottomSheet(
+                      showModalBottomSheet<dynamic>(
                           context: context,
                           backgroundColor: Colors.transparent,
-                          builder: (context) => LoginModal()
+                          isScrollControlled: true,
+                          builder: (context) => Wrap(
+                            children: [
+                              LoginModal(),
+                            ],
+                          )
                       );
                     },
                     child: Text('Sign in', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
