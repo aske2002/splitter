@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-splitter-dev-140902-authRole",
+      "UnauthRoleArn": "arn:aws:iam::567405265479:role/amplify-splitter-dev-140902-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::567405265479:role/amplify-splitter-dev-140902-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-splitter-dev-140902-deployment",
+      "UnauthRoleName": "amplify-splitter-dev-140902-unauthRole",
+      "StackName": "amplify-splitter-dev-140902",
+      "StackId": "arn:aws:cloudformation:eu-central-1:567405265479:stack/amplify-splitter-dev-140902/8a3d2510-42f0-11ec-828c-06b17338b2e0",
+      "AmplifyAppId": "durjo4gdfvqi3"
+    },
+    "categories": {
+      "auth": {
+        "Splitter": {
+          "facebookAppId": "880471425987446",
+          "googleClientId": "356478201860-95drcpj9ukkrjvj3n04fa9lmange3go3.apps.googleusercontent.com"
+        }
+      }
+    }
+  }
+}
