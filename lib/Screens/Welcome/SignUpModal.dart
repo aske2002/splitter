@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:splitter/constants.dart';
 
-class LoginModal extends StatelessWidget {
+class SignUpModal extends StatelessWidget {
   @override
   Widget build(BuildContext context ) {
     Size size = MediaQuery.of(context).size;
     return Theme(
       data: ThemeData(
-        colorScheme: ThemeData().colorScheme.copyWith(
-          primary: kDarkHeadingColor,
-        )
+          colorScheme: ThemeData().colorScheme.copyWith(
+            primary: kDarkHeadingColor,
+          )
       ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
@@ -32,72 +32,14 @@ class LoginModal extends StatelessWidget {
                   iconSize: 30.0,
                   onPressed: () {Navigator.pop(context);},
                 ),
-                Text("Sign In", style: TextStyle(
+                Text("Sign Up", style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.w900,
                   color: kDarkHeadingColor,
                 ))
               ],
             ),
-            SizedBox(height: 30.0),
-            TextFormField(
-              style: TextStyle(
-                  fontSize: 18.0
-              ),
-              textAlign: TextAlign.left,
-              decoration: InputDecoration(
-                  hintStyle: TextStyle(
-                    color: kSmallTextColor,
-                  ),
-                  prefixIcon: Icon(Icons.alternate_email_rounded, size: 22,),
-                  hintText: "Email adress",
-                  focusColor: kMediumHeadingColor,
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: kMediumHeadingColor)
-                  )
-              ),
-            ),
-            SizedBox(height: 30.0),
-            TextFormField(
-              style: TextStyle(
-                  fontSize: 18.0
-              ),
-              textAlign: TextAlign.left,
-              decoration: InputDecoration(
-                  hintStyle: TextStyle(
-                    color: kSmallTextColor,
-                  ),
-                  prefixIcon: Icon(Icons.lock_rounded, size: 22,),
-                  suffixIcon: TextButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateColor.resolveWith((states) => Colors.black12),
-                    ),
-                    child: Text("Forgot password?", style: TextStyle(color: kPrimaryColor, fontSize: 15.0, fontWeight: FontWeight.w500),),
-                  ),
-                  hintText: "Password",
-                  focusColor: kMediumHeadingColor,
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: kMediumHeadingColor)
-                  )
-              ),
-            ),
-            SizedBox(height: 35.0),
-            Container(
-              height: 55,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Sign in', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-                style: ElevatedButton.styleFrom(
-                  primary: kPrimaryColor,
-                  elevation: 0.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16), // <-- Radius
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 15.0),
+            SizedBox(height: 25.0),
             Container(
               height: 55,
               decoration: BoxDecoration(
@@ -122,20 +64,95 @@ class LoginModal extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 40.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Don't have an account?", style: TextStyle(color: kDarkHeadingColor, fontSize: 16.0, fontWeight: FontWeight.normal),),
-                TextButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                    overlayColor: MaterialStateColor.resolveWith((states) => Colors.black12),
+            SizedBox(height: 30.0),
+            Text("Or register with email", style: TextStyle(color: kSmallTextColor, fontSize: 18.0, fontWeight: FontWeight.normal), textAlign: TextAlign.center,),
+            SizedBox(height: 30.0),
+            TextFormField(
+              style: TextStyle(
+                  fontSize: 18.0
+              ),
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                  hintStyle: TextStyle(
+                    color: kSmallTextColor,
                   ),
-                  child: Text("Register", style: TextStyle(color: kPrimaryColor, fontSize: 16.0, fontWeight: FontWeight.w500),),
+                  prefixIcon: Icon(Icons.alternate_email_rounded, size: 22,),
+                  hintText: "Email adress",
+                  focusColor: kMediumHeadingColor,
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: kMediumHeadingColor)
+                  )
+              ),
+            ),
+            SizedBox(height: 20.0),
+            TextFormField(
+              style: TextStyle(
+                  fontSize: 18.0
+              ),
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                  hintStyle: TextStyle(
+                    color: kSmallTextColor,
+                  ),
+                  prefixIcon: Icon(Icons.person_rounded, size: 25,),
+                  hintText: "Full name",
+                  focusColor: kMediumHeadingColor,
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: kMediumHeadingColor)
+                  )
+              ),
+            ),
+            SizedBox(height: 20.0),
+            TextFormField(
+              style: TextStyle(
+                  fontSize: 18.0
+              ),
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                  hintStyle: TextStyle(
+                    color: kSmallTextColor,
+                  ),
+                  prefixIcon: Icon(Icons.phone_rounded, size: 25,),
+                  hintText: "Phone",
+                  focusColor: kMediumHeadingColor,
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: kMediumHeadingColor)
+                  )
+              ),
+            ),
+            SizedBox(height: 20.0),
+            TextFormField(
+              style: TextStyle(
+                  fontSize: 18.0
+              ),
+              textAlign: TextAlign.left,
+              decoration: InputDecoration(
+                  hintStyle: TextStyle(
+                    color: kSmallTextColor,
+                  ),
+                  prefixIcon: Icon(Icons.lock_rounded, size: 24,),
+                  hintText: "Password",
+                  focusColor: kMediumHeadingColor,
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: kMediumHeadingColor)
+                  )
+              ),
+            ),
+            SizedBox(height: 35.0),
+            Container(
+              height: 55,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('Sign Up', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
+                style: ElevatedButton.styleFrom(
+                  primary: kPrimaryColor,
+                  elevation: 0.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16), // <-- Radius
+                  ),
                 ),
-              ],
-            )
+              ),
+            ),
           ],
         ),
       ),

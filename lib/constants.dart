@@ -20,4 +20,6 @@ const kMediumHeadingColor = Color(0xff848484);
 const kSmallTextColor = Color(0xffA1A1A1);
 
 //Background color
-const kBackground = Color(0xffD2D3E2);
+const kBackground = Color(0xffE3E4F5);
+const kBackgroundAccent = Color(0xffD2D3E2);
+const kSecondaryBackground = Color(0xffF2F4FB);

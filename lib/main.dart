@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splitter/Screens/Welcome/welcome_screen.dart';
+import 'package:splitter/Screens/Verify/verify_screen.dart';
 
 // Amplify Flutter Packages
 import 'package:amplify_flutter/amplify.dart';
@@ -61,6 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return WelcomeScreen();
+    return VerifyScreen();
   }
 }

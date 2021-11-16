@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:splitter/Screens/Welcome/SignUpModal.dart';
 
 import 'package:splitter/constants.dart';
 import 'package:splitter/Screens/Welcome/LoginModal.dart';
@@ -15,6 +16,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kPrimaryAccent,
       body: Stack(
         children: [
@@ -68,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(bottom: 15),
                   width: size.width*0.8,
-                  height: 60,
+                  height: 55,
                   child: ElevatedButton(
                     onPressed: () {
                       showModalBottomSheet<dynamic>(
@@ -82,12 +84,12 @@ class WelcomeScreen extends StatelessWidget {
                           )
                       );
                     },
-                    child: Text('Sign in', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    child: Text('Sign in', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
                     style: ElevatedButton.styleFrom(
                       primary: kPrimaryAccent,
                       elevation: 0.0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25), // <-- Radius
+                        borderRadius: BorderRadius.circular(16), // <-- Radius
                       ),
                     ),
                   ),
@@ -95,15 +97,26 @@ class WelcomeScreen extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(bottom: 50),
                   width: size.width*0.8,
-                  height: 60,
+                  height: 55,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Sign up', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                    onPressed: () {
+                      showModalBottomSheet<dynamic>(
+                          context: context,
+                          backgroundColor: Colors.transparent,
+                          isScrollControlled: true,
+                          builder: (context) => Wrap(
+                            children: [
+                              SignUpModal(),
+                            ],
+                          )
+                      );
+                    },
+                    child: Text('Sign up', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
                     style: ElevatedButton.styleFrom(
                       primary: kSecondaryColor,
                       elevation: 0.0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25), // <-- Radius
+                        borderRadius: BorderRadius.circular(16), // <-- Radius
                       ),
                     ),
                   ),
