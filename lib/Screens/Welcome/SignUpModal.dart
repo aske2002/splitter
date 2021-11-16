@@ -1,10 +1,69 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:splitter/constants.dart';
+import 'package:splitter/route.dart' as route;
 
-class SignUpModal extends StatelessWidget {
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+
+// Generated in previous step
+import 'package:splitter/amplifyconfiguration.dart';
+
+class SignUpModal extends StatefulWidget {
+  SignUpModal({Key key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context ) {
+  _SignUpModalState createState() => _SignUpModalState();
+}
+
+class _SignUpModalState extends State<SignUpModal> {
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+
+
+  @override
+  initState() {
+    super.initState();
+  }
+
+   void  signUpWithMail() async {
+    try {
+      Map<String, String> userAttributes = {
+        'email': emailController.text,
+        'phone_number': phoneController.text,
+        'name': nameController.text,
+      };
+      SignUpResult res = await Amplify.Auth.signUp(
+          username: emailController.text,
+          password: passwordController.text,
+          options: CognitoSignUpOptions(
+            userAttributes: userAttributes,
+          )
+      );
+      if(res.isSignUpComplete) {
+        Navigator.pushNamed(context, route.verificationPage);
+      }
+      print(res.isSignUpComplete);
+    } on AuthException catch(e) {
+      print(e.message);
+    }
+ }
+
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    nameController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+
+  Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Theme(
       data: ThemeData(
@@ -68,6 +127,7 @@ class SignUpModal extends StatelessWidget {
             Text("Or register with email", style: TextStyle(color: kSmallTextColor, fontSize: 18.0, fontWeight: FontWeight.normal), textAlign: TextAlign.center,),
             SizedBox(height: 30.0),
             TextFormField(
+              controller: emailController,
               style: TextStyle(
                   fontSize: 18.0
               ),
@@ -86,6 +146,7 @@ class SignUpModal extends StatelessWidget {
             ),
             SizedBox(height: 20.0),
             TextFormField(
+              controller: nameController,
               style: TextStyle(
                   fontSize: 18.0
               ),
@@ -104,6 +165,7 @@ class SignUpModal extends StatelessWidget {
             ),
             SizedBox(height: 20.0),
             TextFormField(
+              controller: phoneController,
               style: TextStyle(
                   fontSize: 18.0
               ),
@@ -122,6 +184,8 @@ class SignUpModal extends StatelessWidget {
             ),
             SizedBox(height: 20.0),
             TextFormField(
+              controller: passwordController,
+              obscureText: true,
               style: TextStyle(
                   fontSize: 18.0
               ),
@@ -142,7 +206,7 @@ class SignUpModal extends StatelessWidget {
             Container(
               height: 55,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {signUpWithMail();},
                 child: Text('Sign Up', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
                 style: ElevatedButton.styleFrom(
                   primary: kPrimaryColor,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:splitter/Screens/Welcome/welcome_screen.dart';
 import 'package:splitter/Screens/Verify/verify_screen.dart';
 
+import 'package:splitter/route.dart' as route;
+
 // Amplify Flutter Packages
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
@@ -11,19 +13,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'amplifyconfiguration.dart';
 
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(),
-      home: MyHomePage(),
-    );
-  }
+  runApp(MyHomePage());
 }
 
 class MyHomePage extends StatefulWidget {
@@ -56,12 +46,11 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return VerifyScreen();
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(),
+      onGenerateRoute: route.controller,
+      initialRoute: route.welcomePage ,
+    );
   }
 }

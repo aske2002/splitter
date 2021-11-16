@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:splitter/constants.dart';
 
+// Amplify Flutter Packages
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+
 class VerifyScreen extends StatefulWidget {
   VerifyScreen({Key key}) : super(key: key);
 
@@ -17,7 +22,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   }
 
   String currentCode = "";
-  String showCode = "○○○○";
+  String showCode = "○○○○○○";
 
   void removeLast() {
     if(currentCode.length>0) {
@@ -27,26 +32,30 @@ class _VerifyScreenState extends State<VerifyScreen> {
   }
 
   void keypadClick(int number) {
-    if(currentCode.length < 4) {
+    if(currentCode.length < 6) {
       currentCode += number.toString();
       updateCode();
     }
   }
 
   void updateCode() {
-    setState(() {
+    setState(() async {
       String nextShowCode = "";
-      if(currentCode.length < 4) {
+      if(currentCode.length < 6) {
         for(var i = 0; i < currentCode.length; i++) {
           nextShowCode += "●";
         }
-        if (currentCode.length < 4) {
-          for(var i = 0; i < 4-currentCode.length; i++) {
+        if (currentCode.length < 6) {
+          for(var i = 0; i < 6-currentCode.length; i++) {
             nextShowCode += "○";
           }
         }
       } else {
-        nextShowCode = "●●●●";
+        nextShowCode = "●●●●●●";
+        /*await Amplify.Auth.confirmSignUp(
+            username: username,
+            confirmationCode: confirmationCode
+        );*/
       }
       print(currentCode);
       showCode = nextShowCode;

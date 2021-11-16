@@ -13,10 +13,7 @@
     },
     "categories": {
       "auth": {
-        "Splitter": {
-          "facebookAppId": "880471425987446",
-          "googleClientId": "356478201860-95drcpj9ukkrjvj3n04fa9lmange3go3.apps.googleusercontent.com"
-        }
+        "Splitter": {}
       }
     }
   }
