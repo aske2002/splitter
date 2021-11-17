@@ -1,0 +1,27 @@
+type List @model {
+  id: ID!
+  name: String!
+  date: AWSDateTime!
+  products: [Product] @connection(keyName: "byList", fields: ["id"])
+  inqueries: [Inquery] @connection(keyName: "byList", fields: ["id"])
+}
+
+type Inquery @model @key(name: "byList", fields: ["listID"]) {
+  id: ID!
+  userName: String!
+  paid: Boolean!
+  dismissed: Boolean!
+  listID: ID!
+  products: [Product] @connection(keyName: "byInquery", fields: ["id"])
+}
+
+type Product @model
+  @key(name: "byInquery", fields: ["inqueryID"])
+  @key(name: "byList", fields: ["listID"]) {
+  id: ID!
+  inqueryID: ID!
+  listID: ID!
+  amount: Int!
+  price: Float!
+  discount: Float!
+}

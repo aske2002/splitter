@@ -127,14 +127,6 @@ Parameters:
   authProviders:
     Type: CommaDelimitedList
       
-  facebookAppId:
-    Type: String
-  
-            
-  googleClientId:
-    Type: String
-  
-            
         
   usernameAttributes:
     Type: CommaDelimitedList
@@ -171,19 +163,10 @@ Parameters:
     Type: String
   
             
-  hostedUIProviderCreds:
-    Type: String
-  
-            
-  oAuthMetadata:
-    Type: String
-  
-            
         
   userPoolGroupList:
     Type: CommaDelimitedList
       
-            
   serviceName:
     Type: String
   
@@ -212,6 +195,15 @@ Parameters:
   dependsOn:
     Type: CommaDelimitedList
       
+  hostedUIProviderCreds:
+    Type: String
+  
+            
+  oAuthMetadata:
+    Type: String
+  
+            
+            
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
   
@@ -991,14 +983,7 @@ Resources:
           ProviderName: !Sub
             - cognito-idp.${region}.amazonaws.com/${client}
             - { region: !Ref "AWS::Region",  client: !Ref UserPool}
-            
-      SupportedLoginProviders:
-        
-        graph.facebook.com: !Ref facebookAppId
-        
-        
-        
-        
+
       
       AllowUnauthenticatedIdentities: !Ref allowUnauthenticatedIdentities
       
@@ -1060,14 +1045,8 @@ Outputs :
     Description: role arn
   
   
-  GoogleWebClient:
-    Value: !Ref googleClientId
   
   
-  
-  
-  FacebookWebClient:
-    Value: !Ref facebookAppId
   
   
   

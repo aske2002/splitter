@@ -79,10 +79,11 @@ class WelcomeScreen extends StatelessWidget {
                           context: context,
                           backgroundColor: Colors.transparent,
                           isScrollControlled: true,
-                          builder: (context) => Wrap(
-                            children: [
-                              LoginModal(),
-                            ],
+                          builder: (context) => SingleChildScrollView(
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                              child: LoginModal(),
+                            ),
                           )
                       );
                     },
@@ -106,10 +107,11 @@ class WelcomeScreen extends StatelessWidget {
                           context: context,
                           backgroundColor: Colors.transparent,
                           isScrollControlled: true,
-                          builder: (context) => Wrap(
-                            children: [
-                              SignUpModal(),
-                            ],
+                          builder: (context) => SingleChildScrollView(
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                              child: SignUpModal(),
+                            ),
                           )
                       );
                     },
