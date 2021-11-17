@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'package:splitter/Screens/Verify/verify_screen.dart';
 import 'package:splitter/Screens/Welcome/welcome_screen.dart';
+import 'package:splitter/Screens/Home/home_screen.dart';
+
+import 'package:splitter/Models/VerifyScreenArguments.dart';
 
 const String welcomePage = 'welcome';
 const String verificationPage = 'verify';
+const String homePage = 'home';
 
 void login() {}
 
@@ -15,7 +19,10 @@ Route<dynamic> controller(RouteSettings settings) {
     case welcomePage:
       return MaterialPageRoute(builder: (context) => WelcomeScreen());
     case verificationPage:
-      return MaterialPageRoute(builder: (context) => VerifyScreen());
+      final arguments = settings.arguments as VerifyArguments;
+      return MaterialPageRoute(builder: (context) => VerifyScreen(email: arguments.email, password: arguments.password,phone: arguments.phone,));
+    case homePage:
+      return MaterialPageRoute(builder: (context) => HomeScreen());
     default:
       throw ('this route name does not exist');
   }

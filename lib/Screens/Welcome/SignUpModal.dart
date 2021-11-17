@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:splitter/constants.dart';
 import 'package:splitter/route.dart' as route;
+import 'package:splitter/Models/VerifyScreenArguments.dart';
 
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
@@ -32,19 +34,19 @@ class _SignUpModalState extends State<SignUpModal> {
    void  signUpWithMail() async {
     try {
       Map<String, String> userAttributes = {
-        'email': emailController.text,
-        'phone_number': phoneController.text,
+        'email': emailController.text.trim(),
+        'phone_number': phoneController.text.trim(),
         'name': nameController.text,
       };
       SignUpResult res = await Amplify.Auth.signUp(
-          username: emailController.text,
-          password: passwordController.text,
+          username: emailController.text.trim(),
+          password: passwordController.text.trim(),
           options: CognitoSignUpOptions(
             userAttributes: userAttributes,
           )
       );
       if(res.isSignUpComplete) {
-        Navigator.pushNamed(context, route.verificationPage);
+        Navigator.pushNamed(context, route.verificationPage, arguments: VerifyArguments(email:  emailController.text.trim(), phone: phoneController.text.trim(), password: passwordController.text.trim()));
       }
       print(res.isSignUpComplete);
     } on AuthException catch(e) {

@@ -1,16 +1,42 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:splitter/route.dart' as route;
 import 'package:splitter/constants.dart';
 
-class LoginModal extends StatelessWidget {
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+
+class LoginModal extends StatefulWidget {
   @override
+  _LoginModalState createState() => _LoginModalState();
+}
+
+class _LoginModalState extends State<LoginModal> {
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+
+  void signIn() async {
+    try {
+      await Amplify.Auth.signOut();
+      await Amplify.Auth.signIn(
+        username: usernameController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      Navigator.pushReplacementNamed(context, route.homePage);
+    } on AuthException catch (e) {
+      print(e.message);
+    }
+  }
   Widget build(BuildContext context ) {
     Size size = MediaQuery.of(context).size;
     return Theme(
       data: ThemeData(
-        colorScheme: ThemeData().colorScheme.copyWith(
-          primary: kDarkHeadingColor,
-        )
+          colorScheme: ThemeData().colorScheme.copyWith(
+            primary: kDarkHeadingColor,
+          )
       ),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
@@ -41,6 +67,7 @@ class LoginModal extends StatelessWidget {
             ),
             SizedBox(height: 30.0),
             TextFormField(
+              controller: usernameController,
               style: TextStyle(
                   fontSize: 18.0
               ),
@@ -59,6 +86,7 @@ class LoginModal extends StatelessWidget {
             ),
             SizedBox(height: 30.0),
             TextFormField(
+              controller: passwordController,
               style: TextStyle(
                   fontSize: 18.0
               ),
@@ -86,7 +114,7 @@ class LoginModal extends StatelessWidget {
             Container(
               height: 55,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {signIn();},
                 child: Text('Sign in', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
                 style: ElevatedButton.styleFrom(
                   primary: kPrimaryColor,
@@ -142,3 +170,4 @@ class LoginModal extends StatelessWidget {
     );
   }
 }
+

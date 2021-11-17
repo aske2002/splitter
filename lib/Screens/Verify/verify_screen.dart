@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:splitter/route.dart' as route;
 import 'package:splitter/constants.dart';
 
 // Amplify Flutter Packages
@@ -9,20 +10,24 @@ import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 
 class VerifyScreen extends StatefulWidget {
-  VerifyScreen({Key key}) : super(key: key);
+  String password,email,phone;
+  VerifyScreen({Key key,@required this.password,@required this.email,@required this.phone}) : super(key: key);
 
   @override
   _VerifyScreenState createState() => _VerifyScreenState();
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
+
   @override
   initState() {
     super.initState();
   }
 
+  bool isLoading = false;
   String currentCode = "";
   String showCode = "○○○○○○";
+
 
   void removeLast() {
     if(currentCode.length>0) {
@@ -38,26 +43,39 @@ class _VerifyScreenState extends State<VerifyScreen> {
     }
   }
 
-  void updateCode() {
-    setState(() async {
-      String nextShowCode = "";
-      if(currentCode.length < 6) {
-        for(var i = 0; i < currentCode.length; i++) {
-          nextShowCode += "●";
-        }
-        if (currentCode.length < 6) {
-          for(var i = 0; i < 6-currentCode.length; i++) {
-            nextShowCode += "○";
-          }
-        }
-      } else {
-        nextShowCode = "●●●●●●";
-        /*await Amplify.Auth.confirmSignUp(
-            username: username,
-            confirmationCode: confirmationCode
-        );*/
+  void updateCode() async {
+    String nextShowCode = "";
+    if(currentCode.length < 6) {
+      for(var i = 0; i < currentCode.length; i++) {
+        nextShowCode += "●";
       }
-      print(currentCode);
+      if (currentCode.length < 6) {
+        for(var i = 0; i < 6-currentCode.length; i++) {
+          nextShowCode += "○";
+        }
+      }
+    } else {
+      isLoading = true;
+      setState(()  {
+        showCode = "●●●●●●";
+      });
+      try {
+        await Amplify.Auth.signOut();
+        await Amplify.Auth.confirmSignUp(
+          username: widget.email,
+          confirmationCode: currentCode,
+        );
+        await Amplify.Auth.signIn(
+          username: widget.email,
+          password: widget.password,
+        );
+        Navigator.pushReplacementNamed(context, route.homePage);
+      } on AuthException catch(e) {
+
+      }
+    }
+    print(currentCode);
+    setState(()  {
       showCode = nextShowCode;
     });
   }
@@ -80,7 +98,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
             SizedBox(height: 20,),
             Text("Enter code sent to \nyour phone", style: TextStyle(height: 1.2, fontSize: 30, fontWeight: FontWeight.bold, color: kDarkHeadingColor),),
             SizedBox(height: 20,),
-            Text("Code sent to +452947582", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: kMediumHeadingColor),),
+            Text("Code sent to " + widget.phone, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400, color: kMediumHeadingColor),),
             SizedBox(height: 5,),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +119,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(showCode, style: TextStyle(letterSpacing: 5, fontSize: 40, fontWeight: FontWeight.w400, color: kDarkHeadingColor)),
+                (isLoading) ? CircularProgressIndicator() : Text(showCode, style: TextStyle(letterSpacing: 5, fontSize: 40, fontWeight: FontWeight.w400, color: kDarkHeadingColor)),
               ],
             ),
             SizedBox(height: 30,),
@@ -270,24 +288,6 @@ class _VerifyScreenState extends State<VerifyScreen> {
               ),
             )
           ],
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
-          margin: EdgeInsets.only(bottom: 20),
-          height: 55,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text('Sign Up', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-            style: ElevatedButton.styleFrom(
-              primary: kPrimaryColor,
-              elevation: 0.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16), // <-- Radius
-              ),
-            ),
-          ),
         ),
       ),
     );
