@@ -1,27 +1,42 @@
-type List @model {
+type List @model
+  @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String!
   date: AWSDateTime!
   products: [Product] @connection(keyName: "byList", fields: ["id"])
   inqueries: [Inquery] @connection(keyName: "byList", fields: ["id"])
+  owner: String
 }
 
-type Inquery @model @key(name: "byList", fields: ["listID"]) {
+type Inquery @model
+  @key(name: "byList", fields: ["listID"])
+  @auth(rules: [
+      { allow: owner },
+      { allow: owner, ownerField: "editor",  operations: [update, read] }
+  ]) {
   id: ID!
   userName: String!
   paid: Boolean!
   dismissed: Boolean!
   listID: ID!
   products: [Product] @connection(keyName: "byInquery", fields: ["id"])
+  owner: String
+  editor: String!
 }
 
 type Product @model
   @key(name: "byInquery", fields: ["inqueryID"])
-  @key(name: "byList", fields: ["listID"]) {
+  @key(name: "byList", fields: ["listID"])
+  @auth(rules: [
+      { allow: owner },
+      { allow: owner, ownerField: "editor",  operations: [update, read] }
+  ]) {
   id: ID!
   inqueryID: ID!
   listID: ID!
   amount: Int!
   price: Float!
   discount: Float!
+  owner: String
+  editor: String!
 }

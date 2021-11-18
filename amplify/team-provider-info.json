@@ -9,11 +9,18 @@
       "UnauthRoleName": "amplify-splitter-dev-140902-unauthRole",
       "StackName": "amplify-splitter-dev-140902",
       "StackId": "arn:aws:cloudformation:eu-central-1:567405265479:stack/amplify-splitter-dev-140902/8a3d2510-42f0-11ec-828c-06b17338b2e0",
-      "AmplifyAppId": "durjo4gdfvqi3"
+      "AmplifyAppId": "durjo4gdfvqi3",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-splitter-dev-140902-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "Splitter": {}
+      },
+      "function": {
+        "parseimg": {
+          "deploymentBucketName": "amplify-splitter-dev-140902-deployment",
+          "s3Key": "amplify-builds/parseimg-59704d5866516a736534-build.zip"
+        }
       }
     }
   }

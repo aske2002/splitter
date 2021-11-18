@@ -8,6 +8,8 @@ import 'package:splitter/route.dart' as route;
 import 'package:amplify_flutter/amplify.dart';
 import 'package:amplify_analytics_pinpoint/amplify_analytics_pinpoint.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_api/amplify_api.dart';
+
 
 // Generated in previous step
 import 'amplifyconfiguration.dart';
@@ -35,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // Add Pinpoint and Cognito Plugins, or any other plugins you want to use
     AmplifyAnalyticsPinpoint analyticsPlugin = AmplifyAnalyticsPinpoint();
     AmplifyAuthCognito authPlugin = AmplifyAuthCognito();
-    await Amplify.addPlugins([authPlugin, analyticsPlugin]);
+    AmplifyAPI apiPlugin = AmplifyAPI();
+    await Amplify.addPlugins([apiPlugin, authPlugin]);
 
     // Once Plugins are added, configure Amplify
     // Note: Amplify can only be configured once.
