@@ -129,6 +129,8 @@ class _SignUpModalState extends State<SignUpModal> {
             Text("Or register with email", style: TextStyle(color: kSmallTextColor, fontSize: 18.0, fontWeight: FontWeight.normal), textAlign: TextAlign.center,),
             SizedBox(height: 30.0),
             TextFormField(
+              autofillHints: ["email", "mail"],
+              textInputAction: TextInputAction.next,
               controller: emailController,
               style: TextStyle(
                   fontSize: 18.0
@@ -139,7 +141,8 @@ class _SignUpModalState extends State<SignUpModal> {
                     color: kSmallTextColor,
                   ),
                   prefixIcon: Icon(Icons.alternate_email_rounded, size: 22,),
-                  hintText: "Email adress",
+                  labelText: "Email",
+                  hintText: "Enter email adress",
                   focusColor: kMediumHeadingColor,
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: kMediumHeadingColor)
@@ -148,6 +151,8 @@ class _SignUpModalState extends State<SignUpModal> {
             ),
             SizedBox(height: 20.0),
             TextFormField(
+              autofillHints: ["fullname", "name", "full name"],
+              textInputAction: TextInputAction.next,
               controller: nameController,
               style: TextStyle(
                   fontSize: 18.0
@@ -158,7 +163,8 @@ class _SignUpModalState extends State<SignUpModal> {
                     color: kSmallTextColor,
                   ),
                   prefixIcon: Icon(Icons.person_rounded, size: 25,),
-                  hintText: "Full name",
+                  labelText: "Name",
+                  hintText: "Enter your full name",
                   focusColor: kMediumHeadingColor,
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: kMediumHeadingColor)
@@ -167,6 +173,9 @@ class _SignUpModalState extends State<SignUpModal> {
             ),
             SizedBox(height: 20.0),
             TextFormField(
+              keyboardType: TextInputType.phone,
+              autofillHints: [AutofillHints.telephoneNumber, AutofillHints.telephoneNumberLocal],
+              textInputAction: TextInputAction.next,
               controller: phoneController,
               style: TextStyle(
                   fontSize: 18.0
@@ -177,7 +186,8 @@ class _SignUpModalState extends State<SignUpModal> {
                     color: kSmallTextColor,
                   ),
                   prefixIcon: Icon(Icons.phone_rounded, size: 25,),
-                  hintText: "Phone",
+                  labelText: "Phone",
+                  hintText: "Enter your phone number",
                   focusColor: kMediumHeadingColor,
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: kMediumHeadingColor)
@@ -186,6 +196,8 @@ class _SignUpModalState extends State<SignUpModal> {
             ),
             SizedBox(height: 20.0),
             TextFormField(
+              autofillHints: ["password"],
+              textInputAction: TextInputAction.go,
               controller: passwordController,
               obscureText: true,
               style: TextStyle(
@@ -197,7 +209,8 @@ class _SignUpModalState extends State<SignUpModal> {
                     color: kSmallTextColor,
                   ),
                   prefixIcon: Icon(Icons.lock_rounded, size: 24,),
-                  hintText: "Password",
+                  labelText: "Password",
+                  hintText: "Enter desired password",
                   focusColor: kMediumHeadingColor,
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: kMediumHeadingColor)

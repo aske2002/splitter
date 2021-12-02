@@ -14,12 +14,22 @@
     },
     "categories": {
       "auth": {
-        "Splitter": {}
+        "Splitter": {
+          "googleClientId": "356478201860-95drcpj9ukkrjvj3n04fa9lmange3go3.apps.googleusercontent.com"
+        }
       },
       "function": {
         "parseimg": {
           "deploymentBucketName": "amplify-splitter-dev-140902-deployment",
           "s3Key": "amplify-builds/parseimg-59704d5866516a736534-build.zip"
+        },
+        "searchusers": {
+          "deploymentBucketName": "amplify-splitter-dev-140902-deployment",
+          "s3Key": "amplify-builds/searchusers-336e57666e507641386c-build.zip"
+        },
+        "searchuser": {
+          "deploymentBucketName": "amplify-splitter-dev-140902-deployment",
+          "s3Key": "amplify-builds/searchuser-7938754e4330764e772b-build.zip"
         }
       }
     }

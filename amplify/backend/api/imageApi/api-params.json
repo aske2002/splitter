@@ -1,42 +1,69 @@
 {
-  "paths": [
-    {
-      "name": "/parseimg",
-      "lambdaFunction": "parseimg",
-      "privacy": {
-        "private": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ]
-      },
-      "policyResourceName": "/parseimg"
-    }
-  ],
-  "resourceName": "imageApi",
-  "apiName": "imageApi",
-  "functionArns": [
-    {
-      "lambdaFunction": "parseimg"
-    }
-  ],
-  "privacy": {
-    "auth": 1,
-    "unauth": 0,
-    "authRoleName": "amplify-splitter-dev-140902-authRole",
-    "unAuthRoleName": "amplify-splitter-dev-140902-unauthRole"
-  },
-  "dependsOn": [
-    {
-      "category": "function",
-      "resourceName": "parseimg",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
-    }
-  ]
+    "paths": [
+        {
+            "name": "/parseimg",
+            "lambdaFunction": "parseimg",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/parseimg"
+        },
+        {
+            "name": "/searchuser",
+            "lambdaFunction": "searchuser",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/searchuser"
+        }
+    ],
+    "resourceName": "imageApi",
+    "apiName": "imageApi",
+    "functionArns": [
+        {
+            "lambdaFunction": "parseimg"
+        },
+        {
+            "lambdaFunction": "searchuser"
+        }
+    ],
+    "privacy": {
+        "auth": 2,
+        "unauth": 0,
+        "authRoleName": "amplify-splitter-dev-140902-authRole",
+        "unAuthRoleName": "amplify-splitter-dev-140902-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "parseimg",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "searchuser",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "ab3a2077"
 }

@@ -11,6 +11,8 @@
                 "android.support.customtabs.action.CustomTabsService" />
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="splitter"

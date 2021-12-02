@@ -1,14 +1,16 @@
 {
+  "version": "1",
+  "cognitoConfig": {
     "identityPoolName": "splitter255a8860_identitypool_255a8860",
     "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "splitt255a8860",
     "userPoolName": "splitter255a8860_userpool_255a8860",
     "autoVerifiedAttributes": [
-        "phone_number"
+      "phone_number"
     ],
     "mfaConfiguration": "OPTIONAL",
     "mfaTypes": [
-        "SMS Text Message"
+      "SMS Text Message"
     ],
     "smsAuthenticationMessage": "Splitter authentication code: {####}",
     "smsVerificationMessage": "Splitter verification code: {####}",
@@ -18,18 +20,18 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-        "email",
-        "name",
-        "phone_number"
+      "email",
+      "name",
+      "phone_number"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
-        "email"
+      "email"
     ],
     "userpoolClientReadAttributes": [
-        "email"
+      "email"
     ],
     "userpoolClientLambdaRole": "Splitt255a8860_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
@@ -37,35 +39,35 @@
     "resourceName": "Splitter",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
-        "Fn::GetAtt": [
-            "AuthRole",
-            "Arn"
-        ]
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
     },
     "unauthRoleArn": {
-        "Fn::GetAtt": [
-            "UnauthRole",
-            "Arn"
-        ]
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
     },
     "useDefault": "manual",
     "thirdPartyAuth": true,
     "authProviders": [
-        "accounts.google.com"
+      "accounts.google.com"
     ],
     "usernameAttributes": [
-        "email"
+      "email"
     ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "triggers": "{}",
+    "triggers": {},
     "hostedUI": true,
     "hostedUIDomainName": "splitter255a8860-255a8860",
     "authProvidersUserPool": [
-        "Google"
+      "Google"
     ],
     "audiences": [
-        "356478201860-95drcpj9ukkrjvj3n04fa9lmange3go3.apps.googleusercontent.com"
+      "356478201860-95drcpj9ukkrjvj3n04fa9lmange3go3.apps.googleusercontent.com"
     ],
     "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"name\":\"name\",\"phone_number\":\"phoneNumbers\",\"username\":\"sub\"}}]",
     "userPoolGroupList": [],
@@ -73,10 +75,11 @@
     "usernameCaseSensitive": false,
     "useEnabledMfas": true,
     "parentStack": {
-        "Ref": "AWS::StackId"
+      "Ref": "AWS::StackId"
     },
     "breakCircularDependency": true,
     "permissions": [],
     "dependsOn": [],
     "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"myapp://\"],\"LogoutURLs\":[\"myapp://\"]}"
+  }
 }

@@ -58,12 +58,25 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "searchuser",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
   },
   "function": {
     "parseimg": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "searchuser": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

@@ -19,15 +19,20 @@ class _LoginModalState extends State<LoginModal> {
   @override
 
   void signIn() async {
-    try {
-      await Amplify.Auth.signOut();
-      await Amplify.Auth.signIn(
-        username: usernameController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-      Navigator.pushReplacementNamed(context, route.homePage);
-    } on AuthException catch (e) {
-      print(e.message);
+    if(usernameController.text.isNotEmpty && passwordController.text.isNotEmpty) {
+      try {
+        await Amplify.Auth.signOut();
+        SignInResult res = await Amplify.Auth.signIn(
+          username: usernameController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+        print(res);
+        if(res.isSignedIn) {
+          Navigator.pushReplacementNamed(context, route.homePage);
+        }
+      } on AuthException catch (e) {
+        print(e.message);
+      }
     }
   }
   Widget build(BuildContext context ) {
@@ -67,17 +72,20 @@ class _LoginModalState extends State<LoginModal> {
             ),
             SizedBox(height: 30.0),
             TextFormField(
+              autofillHints: ["username", "email", "mail"],
+              textInputAction: TextInputAction.next,
               controller: usernameController,
               style: TextStyle(
                   fontSize: 18.0
               ),
               textAlign: TextAlign.left,
               decoration: InputDecoration(
+                labelText: "Email",
                   hintStyle: TextStyle(
                     color: kSmallTextColor,
                   ),
                   prefixIcon: Icon(Icons.alternate_email_rounded, size: 22,),
-                  hintText: "Email adress",
+                  hintText: "Enter your email address",
                   focusColor: kMediumHeadingColor,
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: kMediumHeadingColor)
@@ -86,12 +94,17 @@ class _LoginModalState extends State<LoginModal> {
             ),
             SizedBox(height: 30.0),
             TextFormField(
+              autofillHints: ["password"],
+              obscureText: true,
+              textInputAction: TextInputAction.go,
+              onEditingComplete: () {signIn();},
               controller: passwordController,
               style: TextStyle(
                   fontSize: 18.0
               ),
               textAlign: TextAlign.left,
               decoration: InputDecoration(
+                labelText: "Password",
                   hintStyle: TextStyle(
                     color: kSmallTextColor,
                   ),
@@ -103,7 +116,7 @@ class _LoginModalState extends State<LoginModal> {
                     ),
                     child: Text("Forgot password?", style: TextStyle(color: kPrimaryColor, fontSize: 15.0, fontWeight: FontWeight.w500),),
                   ),
-                  hintText: "Password",
+                  hintText: "Please enter your password",
                   focusColor: kMediumHeadingColor,
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: kMediumHeadingColor)
