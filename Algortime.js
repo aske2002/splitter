@@ -1,3 +1,5 @@
+//Denne fil indeolder algortimen som egnetligt ligger på amazons servere
+//Inkluder dependecies
 const vision = require("@google-cloud/vision")
 const sharp = require('sharp');
 const fs = require('fs');
@@ -591,6 +593,7 @@ function parseList(lines) {
   })
 }
 
+//Amazon relateret kode
 exports.handler = async function(event, context) {
   sharp(Buffer.from(event.body, "base64")).rotate().toBuffer(function (err, outputBuffer, info) {
     if(err) {
