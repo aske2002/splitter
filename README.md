@@ -1,16 +1,12 @@
-# splitter
+# Splitter
 
-A new Flutter application.
+En Flutter applikation til at dele kvitteringer.
 
-## Getting Started
+## Beskrivelse
 
-This project is a starting point for a Flutter application.
+Dette er koden til Splitter, alt kode, inklusiv algortimen er i dette repository.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Alle de vigtige filer i appen ligger under lib/
+Siderne ligger under lib/Screens
+Data modellerne ligegr under lib/Models
+Koden til algoritmen ligegr i filen Algoritme.js
