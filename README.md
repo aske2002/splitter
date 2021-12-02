@@ -10,6 +10,6 @@ Alle de vigtige filer i appen ligger under lib/
 
 Siderne ligger under lib/Screens
 
-Data modellerne ligegr under lib/Models
+Data modellerne ligger under lib/Models
 
-Koden til algoritmen ligegr i filen Algoritme.js
+Koden til algoritmen ligger i filen Algoritme.js
